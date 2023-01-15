@@ -1,5 +1,9 @@
+import cors from 'cors';
+import 'express-async-errors';
 import express from 'express';
+
 const app = express();
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -13,11 +17,20 @@ import jobsRouter from './routes/jobsRoutes.js';
 // middleware
 import notFoundMiddleware from './middleware/not-found.js';
 import errorHandlerMiddleware from './middleware/error-handler.js';
+import morgan from 'morgan';
 
+// app.use(cors());
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Jobify!');
+  res.json({ msg: 'Welcome!' });
+});
+
+app.get('/api/v1', (req, res) => {
+  res.json({ msg: 'API..' });
 });
 
 app.use('/api/v1/auth', authRouter);
