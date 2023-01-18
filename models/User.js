@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -16,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please provide email'],
     validate: {
       validator: validator.isEmail,
-      message: 'Please providea valid email',
+      message: 'Please provide a valid email',
     },
     unique: true,
   },
@@ -41,7 +40,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', async function () {
-  // console.log(this.modifiedPaths());
+  // console.log(this.modifiedPaths())
   if (!this.isModified('password')) return;
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
