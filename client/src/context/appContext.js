@@ -284,6 +284,7 @@ const AppProvider = ({ children }) => {
       logoutUser();
     }
   };
+
   useEffect(() => {
     getCurrentUser();
   }, []);
