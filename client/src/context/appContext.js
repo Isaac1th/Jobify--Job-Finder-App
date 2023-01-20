@@ -246,6 +246,7 @@ const AppProvider = ({ children }) => {
     }
     clearAlert();
   };
+
   const showStats = async () => {
     dispatch({ type: SHOW_STATS_BEGIN });
     try {
@@ -262,6 +263,7 @@ const AppProvider = ({ children }) => {
     }
     clearAlert();
   };
+
   const clearFilters = () => {
     dispatch({ type: CLEAR_FILTERS });
   };

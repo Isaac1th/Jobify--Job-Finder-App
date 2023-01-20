@@ -8,6 +8,7 @@ import {
 import checkPermissions from '../utils/checkPermissions.js';
 import mongoose from 'mongoose';
 import moment from 'moment';
+
 const createJob = async (req, res) => {
   const { position, company } = req.body;
 
@@ -136,6 +137,7 @@ const showStats = async (req, res) => {
     { $sort: { '_id.year': -1, '_id.month': -1 } },
     { $limit: 6 },
   ]);
+
   monthlyApplications = monthlyApplications
     .map((item) => {
       const {
